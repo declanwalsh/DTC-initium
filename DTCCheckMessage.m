@@ -1,7 +1,7 @@
 % Function that checks the message in the header
 % Converts the message to appropriate format based on message type
 % Author: Declan Walsh
-% Last Modified: 15/01/2016
+% Last Modified: 20/01/2016
 
 % Input Arguments:
 %   t = Initium ethernet object
@@ -34,7 +34,7 @@ function [ msgConverted ] = DTCCheckMessage( msg, type, t )
             [CRS, IUtype, STBL, NFR, CNVT, SEQ] = DTCCheckStreamHeader(t); % streams have additional header information
             % NFR = number of scanned frames
             
-            tmp = [measSeq, n, NFR]; % these are the only variables used (others can be used for additional checks if desired)
+            tmp = [measSeq, n, NFR, type]; % these are the only variables used (others can be used for additional checks if desired)
             
         case 33 % array data response
             dim = typecast(msg, 'uint16'); 

@@ -1,6 +1,6 @@
 % Function that measures pressures from an Intium setup table
 % Author: Declan Walsh
-% Last Modified: 14/01/2016
+% Last Modified: 20/01/2016
 
 % Input Arguments:
 %   t = Initium ethernet object
@@ -21,18 +21,16 @@ function [ finalP ] = DTCMeasure( t, STBL )
     pause(DELAY_MEAS); % pause to allow measurements to finish
     
     [out] = DTCCheckHeader(t); % check header and get information about expected data (stream response type)
-    measSeq = out(1);
-    n = out(2);
-    NFR = out(3);
-    % measSeq = measurement set sequence
-    % n = number of data values
-    % NFR = number of scanned frames (need to divide the total signal by for average)
+    measSeq = out(1); % measSeq = measurement set sequence
+    n = out(2); % n = number of data values
+    NFR = out(3); % NFR = number of scanned frames (need to divide the total signal by for average)
+    respType = out(4); % respType = rsponse type from header (to determine what format the stream data will be in)
     
-    % array to hold the pressure measurements
+    % array to hold pressure measurements
     p = zeros(1, n*measSeq);
     
     fprintf('Number of Data Values = %d\nMeasurement sequence = %d\nNumber of scanned frames = %d\n', n, measSeq, NFR);
-    p = DTCRecordData(t, n*measSeq, p);   
+    p = DTCRecordData(t, n*measSeq, p, respType);   
     % if data acquisition rate is higher than ethernet link rate Initium buffer may run out of memory
     % this is indicated by gaps in measurement set sequence numbers
     

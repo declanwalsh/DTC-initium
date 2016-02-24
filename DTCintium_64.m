@@ -34,6 +34,18 @@ fprintf('\nFirmware printed...\n\n');
 DTCScannerStatus(t, CRS, STBL);
 fprintf('\nScanner status printed...\n\n');
 
+DTCCalZero(t, CRS, STBL);
+fprintf('\nScanner rezeroed...\n\n');
+
+DTCSetupCoeff(t,CRS, STBL, SPORT );
+fprintf('\nInitial calibration constants printed...\n\n');
+
+DTCCalZero( t, LRN );
+fprintf('\nScanner zeroed...\n\n');
+
+DTCSetupCoeff(t,CRS, STBL, SPORT );
+fprintf('\nRevised calibration constants printed...\n\n');
+
 pOut = DTCMeasure(t, STBL);
 fprintf('\nMeasured...\n\n');
 

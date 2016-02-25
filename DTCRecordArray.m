@@ -18,7 +18,7 @@ function [ retData ] = DTCRecordArray( t, r, c, data)
     for (ii = 1:c) % moves across columns
         for (jj = 1:r) % moves down rows
             % logs each 4 byte EU value to the data array
-            data(jj, ii) = fread(t, 1, '*single');
+            data(jj, ii) = single(fread(t, 1, 'single'));
         end
     end
 

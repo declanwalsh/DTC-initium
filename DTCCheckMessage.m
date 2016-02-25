@@ -37,7 +37,7 @@ function [ msgConverted ] = DTCCheckMessage( msg, type, t )
             tmp = [measSeq, n, NFR, type]; % these are the only variables used (others can be used for additional checks if desired)
             
         case 33 % array data response
-            dim = typecast(msg, 'uint16'); 
+            dim = typecast(msg, 'uint16');
             % break 4 byte message into 2x 2 byte unsigned integers
             % rows and columns (dimensions) of array response
             

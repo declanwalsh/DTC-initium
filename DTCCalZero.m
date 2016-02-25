@@ -13,10 +13,15 @@
 
 function [ ] = DTCCalZero( t, LRN )
 
-    strMeasure = sprintf('CA2 %d;', LRN)
+    TIME_CALZ = 25; % time in seconds for calibration to occur
+
+    % default to zeroing all connected ports
+    strMeasure = sprintf('CA2;')
     fwrite(t, strMeasure);
     
+    pause(TIME_CALZ + 1); % clicks should be heard at beginning and end of calibration
+    
     [out] = DTCCheckHeader(t); % check for confirmation packet
-
+    
 end
 

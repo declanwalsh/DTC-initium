@@ -35,10 +35,10 @@ function [ status ] = DTCCheckHeader( t )
     assert(t.BytesAvailable>= HEADER_SIZE, 'Not enough bytes waiting - header of packet not correctly sent');
     
     % collects the header bytes and stores them in variables of specified type
-    statRespCode = fread(t, NUM_ELEMENTS, '*uint8');
-    statRespType = fread(t, NUM_ELEMENTS, '*uint8');
-    statMsgLength = fread(t, NUM_ELEMENTS, '*uint16');
-    statMsg = fread(t, NUM_ELEMENTS, '*int32');
+    statRespCode = uint8(fread(t, NUM_ELEMENTS, 'uint8'));
+    statRespType = uint8(fread(t, NUM_ELEMENTS, 'uint8'));
+    statMsgLength = uint16(fread(t, NUM_ELEMENTS, 'uint16'));
+    statMsg = int32(fread(t, NUM_ELEMENTS, 'int32'));
     
     DTCCheckResponseCode(statRespCode); % checks the response code
     DTCCheckResponseType(statRespType); % checks the response type

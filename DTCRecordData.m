@@ -26,12 +26,12 @@ function [ retData ] = DTCRecordData( t, n, data, respType )
     if respType == RESP_TYPE_EU
         % logs each 4 byte EU value to the data array
         for (ii = 1:n)
-            data(1, ii) = fread(t, 1, '*single');
+            data(1, ii) = single(fread(t, 1, 'single'));
         end
     elseif respType == RESP_TYPE_2BYTE
         % logs each 2-byte number to array (as unsigned 16 bit integer)
         for (ii = 1:n)
-            data(1, ii) = fread(t, 1, '*uint16');
+            data(1, ii) = uint16(fread(t, 1, 'uint16'));
         end
     elseif respType ==  RESP_TYPE_3BYTE
         % logs each 3-byte number to array
@@ -41,7 +41,7 @@ function [ retData ] = DTCRecordData( t, n, data, respType )
             data(1, ii) = fread(t, 1, 'ubit24=>uint32');
         end
     else
-        error(sprintf('Invalid response type for stream reading: %d', respType);
+        error(sprintf('Invalid response type for stream reading: %d', respType));
     end
 
     retData = data;

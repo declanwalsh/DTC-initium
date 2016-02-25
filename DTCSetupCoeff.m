@@ -11,7 +11,7 @@
 % Return Values: 
 %   coeffTable = group 0 adjustable DTC coefficients (set by calibration)
 
-function [ coeffTable ] = DTCSetupCoeff( t, CRS, STBL, SPORT )
+function [ coeffTable ] = DTCSetupCoeff( t, CRS, STBL, SPORT)
 
     strMeasure = sprintf('OP2 %s -%d %s;', CRS, STBL, SPORT);
     fwrite(t, strMeasure);
@@ -24,8 +24,6 @@ function [ coeffTable ] = DTCSetupCoeff( t, CRS, STBL, SPORT )
     
     fprintf('Number of rows = %d and columns = %d\n', r, c);
     table = DTCRecordArray(t, r, c, table); % collect all array elements and store in Matlab matrix
-    
-    DTCCheckHeader(t); % should receive a confirmation packet at the end
     
     coeffTable = table;
 

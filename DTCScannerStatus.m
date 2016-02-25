@@ -19,32 +19,32 @@ function [  ] = DTCScannerStatus( t, CRS, SCN )
     SCANNER_BIT = 1;
 
     % write LA1 command to Initium
-    strStatus = sprintf('LA1 %s -%d97', CRS, SCN)
+    strStatus = sprintf('LA1 %s -%d97;', CRS, SCN);
     fwrite(t, strStatus);
-
+    
     % read header returned and convert to a binary number
-    status = checkHeader(t);
+    status = DTCCheckHeader(t);
     statusBin = dec2bin(status);
 
     % check the scanner bit
     if(statusBin(SCANNER_BIT) == 0)
-        fprintf('Scanner Type: 0 = No DTC Scanner Attached');
+        fprintf('Scanner Type: 0 = No DTC Scanner Attached\n');
     else
-        fprintf('Scanner Type: 1 = DTC Scanner Attached');
+        fprintf('Scanner Type: 1 = DTC Scanner Attached\n');
     end
 
     % check the valve position bit
     if(statusBin(VALVE_BIT) == 0)
-        fprintf('Valve Position: 0 = CAL Position');
+        fprintf('Valve Position: 0 = CAL Position\n');
     else
-        fprintf('Valve Position: 1 = RUN Position');
+        fprintf('Valve Position: 1 = RUN Position\n');
     end
 
     % check the sensitivity bit
-    if(statusBIN(SENSITIVITY_BIT) == 0)
-        fprintf('Sensitive Range: 0 = Normal');
+    if(statusBin(SENSITIVITY_BIT) == 0)
+        fprintf('Sensitive Range: 0 = Normal\n');
     else
-        fprintf('Sensitive Range: 1 = Sensitive Range');
+        fprintf('Sensitive Range: 1 = Sensitive Range\n');
     end
 
 end

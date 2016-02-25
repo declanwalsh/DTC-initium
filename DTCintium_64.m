@@ -2,8 +2,8 @@
 
 %%
 close all;
-clear all;
-delete(instrfindall);
+%clear all;
+%delete(instrfindall);
 clc;
 
 %%
@@ -25,6 +25,8 @@ STBL = 1;
 
 DTCClearBuffer(t);
 
+%%
+
 DTCSingleSetup(t);
 fprintf('\nSetup Complete...\n\n');
 
@@ -34,21 +36,23 @@ fprintf('\nFirmware printed...\n\n');
 DTCScannerStatus(t, CRS, STBL);
 fprintf('\nScanner status printed...\n\n');
 
-DTCCalZero(t, CRS, STBL);
-fprintf('\nScanner rezeroed...\n\n');
+%%
 
-DTCSetupCoeff(t,CRS, STBL, SPORT );
+tableInitial = DTCSetupCoeff(t, CRS, STBL, '101-164' )
 fprintf('\nInitial calibration constants printed...\n\n');
 
-DTCCalZero( t, LRN );
+%%
+DTCCalZero( t, 0);
 fprintf('\nScanner zeroed...\n\n');
 
-DTCSetupCoeff(t,CRS, STBL, SPORT );
+tableFinal = DTCSetupCoeff(t, CRS, STBL, '101-164')
 fprintf('\nRevised calibration constants printed...\n\n');
 
-pOut = DTCMeasure(t, STBL);
+%%
+
+pOut = DTCMeasure(t, STBL)
 fprintf('\nMeasured...\n\n');
 
 %%
-fclose(t);
-delete(t);
+%fclose(t);
+%delete(t);

@@ -6,14 +6,14 @@
 
 % Input Arguments:
 %   t = Initium ethernet object
-%   lrn = logical range number of scanners to cal zero
+%   lrn = logical range number of scanners to cal zero (0 = all scanners available)
 
 % Return Values: 
 %   no values returned
 
 function [ ] = DTCCalZero( t, LRN )
 
-    TIME_CALZ = 25; % time in seconds for calibration to occur
+    TIME_CALZ = 25; % time in seconds for calibration to occur - if errors received increase length
 
     % default to zeroing all connected ports
     strMeasure = sprintf('CA2;')

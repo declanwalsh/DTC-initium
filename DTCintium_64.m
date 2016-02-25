@@ -1,9 +1,12 @@
 % Short example program to using a single 64 channel ESP connected to the DTC Initium
+% Tests most functions
+% Author: Declan Walsh
+% Last Modified: 26/02/2016
 
 %%
 close all;
-%clear all;
-%delete(instrfindall);
+clear all;
+delete(instrfindall);
 clc;
 
 %%
@@ -11,10 +14,10 @@ intip = '192.168.129.63'; % DTC intium IP address (written on rear of Initium co
 intp =  8400; % DTC initium port (default)
 
 %%
-t = tcpip(intip,intp,'Timeout',0.5,'NetworkRole','client','InputBufferSize',10*2^20);
+DTC = tcpip(intip,intp,'Timeout',0.5,'NetworkRole','client','InputBufferSize',10*2^20);
 
 %%
-fopen(t);
+fopen(DTC);
 fprintf('\nOpened...\n\n');
 
 %%
@@ -23,34 +26,34 @@ STBL = 1;
 
 %%
 
-DTCClearBuffer(t);
+DTCClearBuffer(DTC);
 
 %%
 
-DTCSingleSetup(t);
+DTCSingleSetup(DTC);
 fprintf('\nSetup Complete...\n\n');
 
-DTCFirmware(t, CRS);
+DTCFirmware(DTC, CRS);
 fprintf('\nFirmware printed...\n\n');
 
-DTCScannerStatus(t, CRS, STBL);
+DTCScannerStatus(DTC, CRS, STBL);
 fprintf('\nScanner status printed...\n\n');
 
 %%
 
-tableInitial = DTCSetupCoeff(t, CRS, STBL, '101-164' )
+tableInitial = DTCSetupCoeff(DTC, CRS, STBL, '101-164' )
 fprintf('\nInitial calibration constants printed...\n\n');
 
 %%
-DTCCalZero( t, 0);
+DTCCalZero( DTC, 0);
 fprintf('\nScanner zeroed...\n\n');
 
-tableFinal = DTCSetupCoeff(t, CRS, STBL, '101-164')
+tableFinal = DTCSetupCoeff(DTC, CRS, STBL, '101-164')
 fprintf('\nRevised calibration constants printed...\n\n');
 
 %%
 
-pOut = DTCMeasure(t, STBL)
+pOut = DTCMeasure(DTC, STBL)
 fprintf('\nMeasured...\n\n');
 
 %%

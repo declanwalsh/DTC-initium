@@ -31,7 +31,7 @@ function [ status ] = DTCCheckHeader( t )
     DELAY = 0.1; % delay to allow response
     
     pause(DELAY);
-    fprintf(1,  'Bytes Available: %d\n', t.BytesAvailable);
+    % fprintf(1,  'Bytes Available: %d\n', t.BytesAvailable);
     assert(t.BytesAvailable>= HEADER_SIZE, 'Not enough bytes waiting - header of packet not correctly sent');
     
     % collects the header bytes and stores them in variables of specified type
@@ -42,7 +42,7 @@ function [ status ] = DTCCheckHeader( t )
     
     DTCCheckResponseCode(statRespCode); % checks the response code
     DTCCheckResponseType(statRespType); % checks the response type
-    fprintf(1, 'Message Field Length:  %d\n', statMsgLength); % prints the total packet length (bytes)
+    % fprintf(1, 'Message Field Length:  %d\n', statMsgLength); % prints the total packet length (bytes)
     
     status = DTCCheckMessage(statMsg, statRespType, t); % converts the message into the proper type
 

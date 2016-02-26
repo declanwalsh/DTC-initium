@@ -22,33 +22,33 @@ function [  ] = DTCCheckResponseCode( code )
     rangeDAmeas = 250;
     rangeDAcomp = 251;
     
-    fprintf(1, 'Response Code %d: ', code)
+    %fprintf(1, 'Response Code %d: ', code)
     
     switch code
         case rangeSD
-            fprintf(1, 'SDU Initialisation (SDx) Commands\n');
+            %fprintf(1, 'SDU Initialisation (SDx) Commands\n');
         case rangePC
-            fprintf(1, 'Initialisation (PCx) Commands\n');
+            %fprintf(1, 'Initialisation (PCx) Commands\n');
         case rangeAD
-            fprintf(1, 'Data Acquisition (ADx) Commands\n');
+            %fprintf(1, 'Data Acquisition (ADx) Commands\n');
         case rangeCA
-            fprintf(1, 'Calibration (CAx) Commands\n');
+            %fprintf(1, 'Calibration (CAx) Commands\n');
         case rangeOP
-            fprintf(1, 'Output Calibration Parameter (OPx) Commands\n');
+            %fprintf(1, 'Output Calibration Parameter (OPx) Commands\n');
         case rangeCV
-            fprintf(1, 'Valve Control (CVx) Commands\n');
+            %fprintf(1, 'Valve Control (CVx) Commands\n');
         case rangeLA
-            fprintf(1, 'Look-At (LAx) Commands\n');
+            %fprintf(1, 'Look-At (LAx) Commands\n');
         case rangeCP
-            fprintf(1, 'Set Calibration Parameters (CPx) Commands\n');
+            %fprintf(1, 'Set Calibration Parameters (CPx) Commands\n');
         case rangeSC
-            fprintf(1, 'System Communication (CPx) Commands\n');
+            %fprintf(1, 'System Communication (CPx) Commands\n');
         case rangeDAmeas
-            fprintf(1, 'Data Acquisition (DA) Stream Packet (measurement set)\n');
+            %fprintf(1, 'Data Acquisition (DA) Stream Packet (measurement set)\n');
         case rangeDAcomp
-            fprintf(1, 'Data Acquisition (DA) Stream Packet (comp-set)\n');
+            %fprintf(1, 'Data Acquisition (DA) Stream Packet (comp-set)\n');
         otherwise
-            fprintf(1, 'Unknown Response Code Received\n');
+            %fprintf(1, 'Unknown Response Code Received\n');
     end
 
 end

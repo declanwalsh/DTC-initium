@@ -11,12 +11,12 @@
 
 function [  ] = DTCCheckResponseConfirmation( code )
 
-    fprintf(1, 'Response is %d', code);
+    %fprintf(1, 'Response is %d', code);
 
     if (code == 0)
-        fprintf(1, ' Confirmation Packet OK\n');
+        %fprintf(1, ' Confirmation Packet OK\n');
     else
-        fprintf(1, ' - WARNING - may indicate warning number\n');
+        %fprintf(1, ' - WARNING - may indicate warning number\n');
     end
 
 end

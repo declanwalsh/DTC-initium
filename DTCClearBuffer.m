@@ -14,5 +14,7 @@ function [ ] = DTCClearBuffer( t )
       fread(t, 1);
     end
 
+    fprintf('\nBuffer Cleared...\n\n');
+    
 end
 

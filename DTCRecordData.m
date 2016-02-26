@@ -8,11 +8,12 @@
 %   n = number of data points expected
 %   data = array to store data into
 %   respType = response type as read from header
+%   idx = index of pressure array currently up to
 
 % Return Values:
 %   retData = array passed into function now filled with measured data
 
-function [ retData ] = DTCRecordData( t, n, data, respType )
+function [ retData ] = DTCRecordData( t, n, data, respType, idx )
 
     NUM_ELEMENTS = 1; % number of elements to take off at once
     
@@ -26,19 +27,19 @@ function [ retData ] = DTCRecordData( t, n, data, respType )
     if respType == RESP_TYPE_EU
         % logs each 4 byte EU value to the data array
         for (ii = 1:n)
-            data(1, ii) = single(fread(t, 1, 'single'));
+            data(idx, ii) = single(fread(t, 1, 'single'));
         end
     elseif respType == RESP_TYPE_2BYTE
         % logs each 2-byte number to array (as unsigned 16 bit integer)
         for (ii = 1:n)
-            data(1, ii) = uint16(fread(t, 1, 'uint16'));
+            data(idx, ii) = uint16(fread(t, 1, 'uint16'));
         end
     elseif respType ==  RESP_TYPE_3BYTE
         % logs each 3-byte number to array
         % hasn't been tested and may have problems
         % read each datum as 24 bit packet and output it in 32 bit integer format
         for (ii = 1:n)
-            data(1, ii) = fread(t, 1, 'ubit24=>uint32');
+            data(idx, ii) = fread(t, 1, 'ubit24=>uint32');
         end
     else
         error(sprintf('Invalid response type for stream reading: %d', respType));
